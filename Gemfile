@@ -8,7 +8,6 @@ gem 'devise'
 gem 'haml-rails'
 gem 'html2haml'
 gem 'image_processing', '~> 1.2'
-gem 'jbuilder'
 gem 'jsbundling-rails'
 gem 'kamal', require: false
 gem 'pg', '~> 1.1'
