@@ -1,0 +1,21 @@
+.admin-sidebar.d-flex.flex-column.flex-shrink-0.p-3.bg-light
+  = link_to admins_root_path, class: 'd-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none' do
+    %span.fs-4 Yonde管理画面
+  %hr
+  %ul.nav.nav-pills.flex-column.mb-auto
+    %li.nav-item
+      = link_to '#', class: 'nav-link text-black' do
+        %i.bi.bi-house.icon-small.me-2
+        管理者ホーム
+    %li.nav-item
+      = link_to '#', class: 'nav-link text-black' do
+        %i.bi.bi-person-circle.icon-small.me-2
+        ユーザー一覧
+  %hr
+  .dropdown
+    %a.d-flex.align-items-center.link-body-emphasis.text-decoration-none.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#"}
+      %i.bi.bi-person-fill.icon-middle.me-2
+      %strong 管理者
+    %ul.dropdown-menu.text-small.shadow
+      %li
+        = button_to 'ログアウト', destroy_admin_session_path, class: 'dropdown-item', method: :delete
