@@ -7,6 +7,9 @@
         %ul.navbar-nav.d-flex.flex-row.gap-3
           %li.nav-item
             = link_to 'ホーム', root_path, class: 'nav-link'
+          - if user_signed_in?
+            %li.nav-item
+            = link_to '読み聞かせ記録', '#', class: 'nav-link'
 
         %ul.navbar-nav.d-flex.flex-row.gap-3
           - if user_signed_in?
