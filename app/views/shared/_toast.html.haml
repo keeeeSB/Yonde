@@ -6,8 +6,5 @@
     }
       .d-flex.align-items-center
         .toast-body.text-white.flex-grow-1
-          - if notice
-            = notice
-          - else
-            = alert
+          = notice || alert
         %button.btn-close.btn-close-white.me-3.m-auto{ 'data-bs-dismiss': 'toast', type: 'button' }

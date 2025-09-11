@@ -2,3 +2,9 @@
 @import 'bootstrap-icons/font/bootstrap-icons';
 @import 'admin-sidebar';
 @import 'icon-size';
+@import 'header';
+
+.main-container {
+  max-width: 900px;
+  margin: 0 auto;
+}

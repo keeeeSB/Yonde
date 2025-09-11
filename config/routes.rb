@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   devise_for :admins, controllers: {
     sessions: 'admins/sessions',
   }
@@ -8,4 +9,6 @@ Rails.application.routes.draw do
   end
 
   root 'static_pages#home'
+
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 end
