@@ -18,6 +18,13 @@
         = f.input :password_confirmation,
                   required: true,
                   input_html: { autocomplete: 'new-password' }
+        - if f.object.profile_image.attached? && f.object.profile_image.persisted?
+          = f.input :profile_image,
+                    as: :hidden,
+                    input_html: { value: f.object.profile_image.signed_id }
+        = f.input :profile_image,
+                  as: :file,
+                  input_html: { direct_upload: true }
 
       .form-actions.text-center
         = f.button :submit, class: 'btn btn-primary mt-3'
