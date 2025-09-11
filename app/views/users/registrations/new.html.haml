@@ -6,18 +6,18 @@
       = f.error_notification
       .form-inputs
         = f.input :name,
-          required: true,
-          autofocus: true
+                  required: true,
+                  autofocus: true
         = f.input :email,
-          required: true,
-          input_html: { autocomplete: "email" }
+                  required: true,
+                  input_html: { autocomplete: 'email' }
         = f.input :password,
-          required: true,
-          hint: ("#{@minimum_password_length} 文字以上" if @minimum_password_length),
-          input_html: { autocomplete: "new-password" }
+                  required: true,
+                  hint: ("#{@minimum_password_length} 文字以上" if @minimum_password_length),
+                  input_html: { autocomplete: 'new-password' }
         = f.input :password_confirmation,
-          required: true,
-          input_html: { autocomplete: "new-password" }
+                  required: true,
+                  input_html: { autocomplete: 'new-password' }
 
       .form-actions.text-center
         = f.button :submit, class: 'btn btn-primary mt-3'
