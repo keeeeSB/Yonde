@@ -7,6 +7,6 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :profile_image, blob: {
     content_type: %w[image/png image/jpg image/jpeg],
-    size_range: 1..(5.megabytes)
+    size_range: 1..(5.megabytes),
   }
 end
