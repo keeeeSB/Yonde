@@ -1,6 +1,6 @@
 name: RSpec
 
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
   test:
@@ -35,6 +35,9 @@ jobs:
         run: |
           bin/rails db:create
           bin/rails db:schema:load
+
+      - name: Precompile assets
+        run: bundle exec rails assets:precompile
 
       - name: Run RSpec
         run: bundle exec rspec
