@@ -1,0 +1,19 @@
+%h3.text-center.mb-5 #{current_user.name}さんのプロフィール
+
+.row.justify-content-center
+  .col-md-6
+    .card.shadow-sm.p-4
+      .text-center.mb-3
+        - if current_user.profile_image.attached?
+          = image_tag current_user.profile_image.variant(:thumb), class: 'rounded-circle mb-3'
+        - else
+          = image_tag 'sample-profile.png', class: 'profile-image rounded-circle mb-3', alt: 'プロフィール画像なし'
+
+      %p
+        %strong 名前：
+        = current_user.name
+      %p
+        %strong メールアドレス：
+        = current_user.email
+
+      = link_to '編集', edit_user_registration_path, class: 'btn btn-outline-warning btn-sm  d-inline-block mx-auto'
