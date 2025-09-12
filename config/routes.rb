@@ -8,6 +8,10 @@ Rails.application.routes.draw do
     root 'static_pages#dashboard'
   end
 
+  scope module: :users do
+    resource :profile, only: %i[show]
+  end
+
   root 'static_pages#home'
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
