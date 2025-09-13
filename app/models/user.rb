@@ -2,6 +2,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
 
+  belongs_to :family, optional: true
+
   has_one_attached :profile_image do |attachable|
     attachable.variant :thumb, resize_to_limit: [150, 150]
   end

@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     resource :profile, only: %i[show]
   end
 
+  resource :family, only: %i[show new edit create update]
+
   root 'static_pages#home'
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
