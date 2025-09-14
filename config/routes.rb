@@ -10,9 +10,8 @@ Rails.application.routes.draw do
 
   scope module: :users do
     resource :profile, only: %i[show]
+    resource :family, only: %i[show new edit create update]
   end
-
-  resource :family, only: %i[show new edit create update]
 
   root 'static_pages#home'
 
