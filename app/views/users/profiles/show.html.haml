@@ -25,3 +25,5 @@
         %p
           %strong 苗字：
           = current_user.family.name
+
+        = link_to '編集', edit_family_path(current_user), class: 'btn btn-outline-warning btn-sm  d-inline-block mx-auto'
