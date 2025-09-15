@@ -2,6 +2,10 @@ class Users::FamiliesController < Users::ApplicationController
   before_action :set_family, only: %i[edit update]
 
   def new
+    if current_user.family.present?
+      redirect_to root_path, notice: '既に家族情報を登録しています。'
+    end
+
     @family = Family.new
   end
 
