@@ -21,7 +21,7 @@
     - if current_user.family.present?
       %h3.text-center.my-4 #{current_user.family.name}家の情報
 
-      .card.shadow-sm.p-4
+      .card.shadow-sm.p-4{ data: { test: 'family-card' } }
         %p
           %strong 苗字：
           = current_user.family.name

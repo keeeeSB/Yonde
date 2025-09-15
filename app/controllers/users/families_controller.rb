@@ -12,7 +12,7 @@ class Users::FamiliesController < Users::ApplicationController
     @family = Family.new(family_params)
     if @family.save
       current_user.update!(family: @family)
-      redirect_to root_path, notice: '家族情報を登録しました。'
+      redirect_to profile_path(current_user), notice: '家族情報を登録しました。'
     else
       flash.now[:alert] = '家族情報を登録できませんでした。'
       render :new, status: :unprocessable_content
