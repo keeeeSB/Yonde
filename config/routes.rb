@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+  }
   devise_for :admins, controllers: {
     sessions: 'admins/sessions',
   }
@@ -10,6 +12,7 @@ Rails.application.routes.draw do
 
   scope module: :users do
     resource :profile, only: %i[show]
+    resource :family, only: %i[new edit create update]
   end
 
   root 'static_pages#home'

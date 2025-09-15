@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern
 
   def configure_parmitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: %i[name profile_image])
-    devise_parameter_sanitizer.permit(:account_update, keys: %i[name profile_image])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[name profile_image family_id])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[name profile_image family_id])
   end
 end
