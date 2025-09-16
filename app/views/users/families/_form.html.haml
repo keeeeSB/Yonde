@@ -6,5 +6,13 @@
               required: true,
               autofocus: true
 
+  %h5.mt-4 お子様情報
+  #children-fields
+    = f.simple_fields_for :children do |child_form|
+      = render 'users/families/child_fields', f: child_form
+
+  %button.btn.btn-sm.btn-success.mt-2#add-child
+    + お子様を追加
+
   .form-actions.text-center
     = f.button :submit, class: 'btn btn-primary mt-3'

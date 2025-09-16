@@ -1,0 +1,4 @@
+.nested_fields
+  = f.input :name
+  = f.input :birthday, as: :date
+  = f.input :gender, as: :select, collection: Child.gender.keys.map { |g| [g, g] }
