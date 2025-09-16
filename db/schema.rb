@@ -54,8 +54,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_15_192642) do
     t.string "name", null: false
     t.date "birthday", null: false
     t.integer "gender", null: false
+    t.bigint "family_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["family_id"], name: "index_children_on_family_id"
   end
 
   create_table "families", force: :cascade do |t|
@@ -86,5 +88,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_15_192642) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "children", "families"
   add_foreign_key "users", "families"
 end
