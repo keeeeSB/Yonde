@@ -6,7 +6,6 @@
               required: true,
               autofocus: true
 
-  %h5.mt-4 お子様情報
   #children-fields
     = f.simple_fields_for :children do |child_form|
       = render 'users/families/child_fields', f: child_form

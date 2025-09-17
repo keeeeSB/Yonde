@@ -1,0 +1,4 @@
+.nested_fields
+  = f.input :name
+  = f.input :birthday, html5: true, input_html: { max: '9999-12-31' }
+  = f.input :gender, as: :select, collection: Child.genders.keys.map { |g| [g, g] }

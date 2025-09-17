@@ -7,9 +7,11 @@ class Users::FamiliesController < Users::ApplicationController
     end
 
     @family = Family.new
+    @family.children.build
   end
 
   def edit
+    @family.children.build
   end
 
   def create
@@ -35,7 +37,7 @@ class Users::FamiliesController < Users::ApplicationController
   private
 
   def family_params
-    params.expect(family: [:name, :children_attributes: %i[id name birthday gender]])
+    params.expect(family: [:name, children_attributes: %i[id name birthday gender]])
   end
 
   def set_family
