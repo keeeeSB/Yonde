@@ -3,3 +3,7 @@ ja:
     attributes:
       family:
         name: 苗字
+      child:
+        name: お子様のお名前
+        birthday: 誕生日
+        gender: 性別
