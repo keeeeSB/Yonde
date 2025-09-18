@@ -8,12 +8,12 @@ class Child < ApplicationRecord
   validates :gender, presence: true
 
   def age
-    today = Date.today
+    today = Time.zone.today
     years = today.year - birthday.year
     months = today.month - birthday.month
     months -= 1 if today.day < birthday.day
-    years -= 1 if months < 0
-    months += 12 if months < 0
+    years -= 1 if months.negative?
+    months += 12 if months.negative?
 
     "#{years}歳#{months}ヶ月"
   end
