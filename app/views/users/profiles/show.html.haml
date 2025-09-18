@@ -30,8 +30,9 @@
           %p
             %strong お子様：
             - current_user.family.children.each do |child|
-              = child.name
-              = render 'users/profiles/gender_status_badge', child:
-              = child.age
+              .d-flex.gap-2.mb-3
+                = child.name
+                = render 'users/profiles/gender_status_badge', child:
+                = child.age
 
         = link_to '編集', edit_family_path(current_user), class: 'btn btn-outline-warning btn-sm  d-inline-block mx-auto'
