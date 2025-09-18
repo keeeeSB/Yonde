@@ -1,4 +1,10 @@
-.nested_fields
+.nested-fields.border.rounded.p-3.mb-3
   = f.input :name
   = f.input :birthday, html5: true, input_html: { max: '9999-12-31' }
-  = f.input :gender, as: :select, collection: Child.genders.keys.map { |g| [g, g] }
+  = f.input :gender,
+            as: :select,
+            collection: Child.genders.keys.map { |g| [I18n.t("activerecord.enums.child.gender.#{g}", default: g.to_s), g] },
+            include_blank: '選択してください'
+
+  .d-flex.justify-content-end
+    = button_tag '✕', type: 'button', class: 'btn btn-danger btn-sm remove-child', data: { action: 'children#remove' }

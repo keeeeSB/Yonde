@@ -2,16 +2,28 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :name,
-              required: true,
-              autofocus: true
+    = f.input :name, required: true, autofocus: true
 
-  #children-fields
-    = f.simple_fields_for :children do |child_form|
-      = render 'users/families/child_fields', f: child_form
+  #children-fields{
+    data: {
+      controller: 'children',
+      template: capture do
+        f.fields_for(:children, Child.new, child_index: 'NEW_RECORD') do |child_form|
+          render('users/families/child_fields', f: child_form)
+        end
+      end
+    }
+  }
+    .children-container{ data: { children_target: 'container' } }
+      - family.children.each do |child|
+        = f.fields_for(:children, child) do |child_form|
+          = render 'users/families/child_fields', f: child_form
 
-  %button.btn.btn-sm.btn-success.mt-2#add-child
-    + お子様を追加
+    .text-center.mt-2
+      = button_tag '+ お子様を追加',
+                    type: 'button',
+                    class: 'btn btn-success btn-sm',
+                    data: { action: 'children#add' }
 
   .form-actions.text-center
     = f.button :submit, class: 'btn btn-primary mt-3'
