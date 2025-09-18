@@ -37,7 +37,7 @@ class Users::FamiliesController < Users::ApplicationController
   private
 
   def family_params
-    params.expect(family: [:name, children_attributes: %i[id name birthday gender]])
+    params.expect(family: [:name, children_attributes: [%i[id name birthday gender]] ])
   end
 
   def set_family
