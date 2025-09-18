@@ -11,9 +11,10 @@
         f.fields_for(:children, Child.new, child_index: 'NEW_RECORD') do |child_form|
           render('users/families/child_fields', f: child_form)
         end
-      end
+      end,
     }
   }
+
     .children-container{ data: { children_target: 'container' } }
       - family.children.each do |child|
         = f.fields_for(:children, child) do |child_form|
@@ -21,9 +22,9 @@
 
     .text-center.mt-2
       = button_tag '+ お子様を追加',
-                    type: 'button',
-                    class: 'btn btn-success btn-sm',
-                    data: { action: 'children#add' }
+                   type: 'button',
+                   class: 'btn btn-success btn-sm',
+                   data: { action: 'children#add' }
 
   .form-actions.text-center
     = f.button :submit, class: 'btn btn-primary mt-3'
