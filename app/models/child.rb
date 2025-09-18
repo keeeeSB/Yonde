@@ -6,4 +6,15 @@ class Child < ApplicationRecord
   validates :name, presence: true
   validates :birthday, presence: true
   validates :gender, presence: true
+
+  def age
+    today = Date.today
+    years = today.year - birthday.year
+    months = today.month - birthday.month
+    months -= 1 if today.day < birthday.day
+    years -= 1 if months < 0
+    months += 12 if months < 0
+
+    "#{years}歳#{months}ヶ月"
+  end
 end
