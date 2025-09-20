@@ -15,12 +15,20 @@ RSpec.describe '家族登録機能', type: :system do
       expect(page).to have_current_path new_family_path(user)
 
       fill_in '苗字', with: '佐藤'
+      fill_in 'お子様のお名前', with: 'いちろう'
+      fill_in '誕生日', with: '2022-01-01'
+      select '男の子', from: '性別'
 
       expect do
         click_button '登録する'
         expect(page).to have_content '家族情報を登録しました。'
         expect(page).to have_current_path profile_path(user)
       end.to change(Family, :count).by(1)
+        .and change(Child, :count).by(1)
+
+      expect(page).to have_content '佐藤家の情報'
+      expect(page).to have_content 'いちろう'
+      expect(page).to have_content '男の子'
     end
   end
 
@@ -42,11 +50,23 @@ RSpec.describe '家族登録機能', type: :system do
       expect(page).to have_current_path edit_family_path(user, family)
       expect(page).to have_content '家族情報編集'
 
-      fill_in '苗字', with: '鈴木'
-      click_button '更新する'
+      all('.nested-fields').last.tap do |fields|
+        within(fields) do
+          fill_in 'お子様のお名前', with: 'あいこ'
+          fill_in '誕生日', with: '2023-01-01'
+          select '女の子', from: '性別'
+        end
+      end
+      
+      expect do
+        click_button '更新する'
+        expect(page).to have_content '家族情報を更新しました。'
+        expect(page).to have_current_path profile_path(user)
+      end.to change(Child, :count).by(1)
 
-      expect(page).to have_content '家族情報を更新しました。'
-      expect(page).to have_current_path profile_path(user)
+      expect(page).to have_content '佐藤家の情報'
+      expect(page).to have_content 'あいこ'
+      expect(page).to have_content '女の子'
     end
   end
 end
