@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="children"
 export default class extends Controller {
-  static targets = ["container", "template"]
+  static targets = ["container"]
 
   add(event) {
     event.preventDefault()
