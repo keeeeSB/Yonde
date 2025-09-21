@@ -24,7 +24,7 @@ RSpec.describe '家族登録機能', type: :system do
         expect(page).to have_content '家族情報を登録しました。'
         expect(page).to have_current_path profile_path(user)
       end.to change(Family, :count).by(1)
-        .and change(Child, :count).by(1)
+                                   .and change(Child, :count).by(1)
 
       expect(page).to have_content '佐藤家の情報'
       expect(page).to have_content 'いちろう'
@@ -57,7 +57,7 @@ RSpec.describe '家族登録機能', type: :system do
           select '女の子', from: '性別'
         end
       end
-      
+
       expect do
         click_button '更新する'
         expect(page).to have_content '家族情報を更新しました。'
