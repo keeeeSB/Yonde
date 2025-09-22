@@ -5,6 +5,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', require: false
 gem 'cssbundling-rails'
 gem 'devise'
+gem 'faraday'
 gem 'haml-rails'
 gem 'html2haml'
 gem 'image_processing', '~> 1.2'
@@ -22,7 +23,6 @@ gem 'stimulus-rails'
 gem 'thruster', require: false
 gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[windows jruby]
-gem 'faraday'
 
 group :development, :test do
   gem 'brakeman', require: false
