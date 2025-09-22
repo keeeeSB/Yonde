@@ -7,3 +7,8 @@ ja:
         name: お子様のお名前
         birthday: 誕生日
         gender: 性別
+      book:
+        title: タイトル
+        publish_date: 出版日
+        description: 説明文
+        page_count: ページ数
