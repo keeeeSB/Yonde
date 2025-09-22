@@ -5,4 +5,6 @@ class Book < ApplicationRecord
   validates :isbn, presence: true
   validates :page_count, presence: true
   validates :image_url, presence: true
+
+  scope :default_order, -> { order(created_at: :asc, id: :asc) }
 end
