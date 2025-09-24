@@ -54,7 +54,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_22_012010) do
     t.string "title", null: false
     t.date "published_date", null: false
     t.text "description", null: false
-    t.string "isbn", null: false
+    t.string "systemid", null: false
     t.integer "page_count", null: false
     t.string "image_url", null: false
     t.datetime "created_at", null: false
