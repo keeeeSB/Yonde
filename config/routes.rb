@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resource :family, only: %i[new edit create update]
   end
 
-  resources :books, only: %i[index show create] do
+  resources :books, only: %i[show] do
     collection do
       get :search
     end

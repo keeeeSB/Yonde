@@ -1,0 +1,19 @@
+.row.mt-5
+  .col-md-5
+    = image_tag google_book_thumbnail(@google_book), height: 350, width: 300
+
+  .col-md-7
+    %table.table.table-bordered.w-100
+      %tbody
+        %tr
+          %th.text-center.w-25 タイトル
+          %td= @google_book['volumeInfo']['title']
+        %tr
+          %th.text-center.w-25 著者
+          %td= @google_book['volumeInfo']['authors']
+        %tr
+          %th.text-center.w-25 出版日
+          - if @google_book['volumeInfo']['publishedDate'].present?
+            %td= @google_book['volumeInfo']['publishedDate']
+          - else
+            %td 情報なし
