@@ -10,7 +10,7 @@
     = f.submit '検索', class: 'btn btn-success btn-sm'
 
 - if @google_books.present?
-  %p 検索結果：#{params.dig(:search, :search)}
+  %p 検索結果：#{params[:search]}
 
   .row.g-4
     - @google_books['items']&.each do |google_book|
