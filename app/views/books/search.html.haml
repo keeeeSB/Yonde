@@ -24,7 +24,7 @@
           = google_book['volumeInfo']['title']
         %p
           %strong 著者:
-          = google_book['volumeInfo']['authors']
+          = (google_book['volumeInfo']['authors']&.join(', ')).presence || '情報なし'
         %p
           %strong 出版日:
-          = google_book['volumeInfo']['publishedDate']
+          = google_book['volumeInfo']['publishedDate'].presence || '情報なし'

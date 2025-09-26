@@ -10,10 +10,8 @@
           %td= @google_book['volumeInfo']['title']
         %tr
           %th.text-center.w-25 著者
-          %td= @google_book['volumeInfo']['authors']
+          %td= (@google_book['volumeInfo']['authors']&.join(', ')).presence || '情報なし'
         %tr
           %th.text-center.w-25 出版日
-          - if @google_book['volumeInfo']['publishedDate'].present?
-            %td= @google_book['volumeInfo']['publishedDate']
-          - else
-            %td 情報なし
+          %td= @google_book['volumeInfo']['publishedDate'].presence || '情報なし'
+
