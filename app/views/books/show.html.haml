@@ -1,6 +1,6 @@
 .row.mt-5
   .col-md-5
-    = image_tag google_book_thumbnail(@google_book), height: 350, width: 300
+    = image_tag google_book_thumbnail(@google_book), class: 'image--preview'
 
   .col-md-7
     %table.table.table-bordered.w-100
@@ -10,7 +10,7 @@
           %td= @google_book['volumeInfo']['title']
         %tr
           %th.text-center.w-25 著者
-          %td= (@google_book['volumeInfo']['authors']&.join(', ')).presence || '情報なし'
+          %td= @google_book['volumeInfo']['authors']&.join(', ').presence || '情報なし'
         %tr
           %th.text-center.w-25 出版日
           %td= @google_book['volumeInfo']['publishedDate'].presence || '情報なし'

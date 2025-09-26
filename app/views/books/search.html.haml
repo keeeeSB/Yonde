@@ -17,14 +17,14 @@
       - systemid = google_book['id']
       .col-md-4.mb-3
         = link_to book_path(systemid), class: 'text-decoration-none' do
-          = image_tag google_book_thumbnail(google_book), height: 300, width: 270
+          = image_tag google_book_thumbnail(google_book), class: 'image--card'
 
         %p
           %strong タイトル:
           = google_book['volumeInfo']['title']
         %p
           %strong 著者:
-          = (google_book['volumeInfo']['authors']&.join(', ')).presence || '情報なし'
+          = google_book['volumeInfo']['authors']&.join(', ').presence || '情報なし'
         %p
           %strong 出版日:
           = google_book['volumeInfo']['publishedDate'].presence || '情報なし'
