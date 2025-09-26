@@ -15,6 +15,12 @@ Rails.application.routes.draw do
     resource :family, only: %i[new edit create update]
   end
 
+  resources :books, only: %i[show] do
+    collection do
+      get :search
+    end
+  end
+
   root 'static_pages#home'
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?

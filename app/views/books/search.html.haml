@@ -1,0 +1,30 @@
+%h3.text-center.mb-3 絵本検索
+
+= simple_form_for(:search, url: search_books_path, method: :get) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :search, label: '検索', value: params[:search], placeholder: '絵本のタイトルや著者で検索'
+
+  .form-actions.text-center
+    = f.submit '検索', class: 'btn btn-success btn-sm'
+
+- if @google_books.present?
+  %p 検索結果：#{params[:search]['search']}
+
+  .row.g-4
+    - @google_books['items']&.each do |google_book|
+      - systemid = google_book['id']
+      .col-md-4.mb-3
+        = link_to book_path(systemid), class: 'text-decoration-none' do
+          = image_tag google_book_thumbnail(google_book), class: 'image--card'
+
+        %p
+          %strong タイトル:
+          = google_book['volumeInfo']['title']
+        %p
+          %strong 著者:
+          = google_book['volumeInfo']['authors']&.join(', ').presence || '情報なし'
+        %p
+          %strong 出版日:
+          = google_book['volumeInfo']['publishedDate'].presence || '情報なし'

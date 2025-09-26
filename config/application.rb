@@ -32,6 +32,7 @@ module Yonde
                        helper_specs: false,
                        routing_specs: false,
                        request_specs: false
+      g.skip_routes true
     end
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do

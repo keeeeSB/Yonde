@@ -10,7 +10,9 @@
             = link_to 'ホーム', root_path, class: 'nav-link'
           - if user_signed_in?
             %li.nav-item
-            = link_to '読み聞かせ記録', '#', class: 'nav-link'
+              = link_to '読み聞かせ記録', '#', class: 'nav-link'
+            %li.nav-item
+              = link_to '絵本検索', search_books_path, class: 'nav-link'
 
         %ul.navbar-nav.d-flex.flex-row.gap-3
           - if user_signed_in?
