@@ -3,7 +3,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable
 
   belongs_to :family, optional: true
-  has_many :reading_logs, dependent: :restrict_with_error
 
   has_one_attached :profile_image do |attachable|
     attachable.variant :thumb, resize_to_limit: [150, 150]
