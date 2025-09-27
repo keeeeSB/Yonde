@@ -77,13 +77,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_27_212040) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "family_libraries", force: :cascade do |t|
+  create_table "libraries", force: :cascade do |t|
     t.bigint "book_id", null: false
     t.bigint "family_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["book_id", "family_id"], name: "index_family_libraries_on_book_id_and_family_id", unique: true
-    t.index ["family_id"], name: "index_family_libraries_on_family_id"
+    t.index ["book_id", "family_id"], name: "index_libraries_on_book_id_and_family_id", unique: true
+    t.index ["family_id"], name: "index_libraries_on_family_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -109,7 +109,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_27_212040) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "children", "families"
-  add_foreign_key "family_libraries", "books"
-  add_foreign_key "family_libraries", "families"
+  add_foreign_key "libraries", "books"
+  add_foreign_key "libraries", "families"
   add_foreign_key "users", "families"
 end

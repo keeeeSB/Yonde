@@ -1,5 +1,5 @@
 class Book < ApplicationRecord
-  has_many :family_libraries, dependent: :destroy
+  has_many :libraries, dependent: :destroy
 
   validates :title, presence: true
   validates :published_date, presence: true
