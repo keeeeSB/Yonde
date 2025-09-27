@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_22_012010) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_27_212040) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -77,6 +77,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_22_012010) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "family_libraries", force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.bigint "family_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id", "family_id"], name: "index_family_libraries_on_book_id_and_family_id", unique: true
+    t.index ["family_id"], name: "index_family_libraries_on_family_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", default: "", null: false
@@ -100,5 +109,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_22_012010) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "children", "families"
+  add_foreign_key "family_libraries", "books"
+  add_foreign_key "family_libraries", "families"
   add_foreign_key "users", "families"
 end
