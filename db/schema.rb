@@ -95,11 +95,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_29_002409) do
   end
 
   create_table "libraries", force: :cascade do |t|
-    t.bigint "book_id", null: false
     t.bigint "family_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["book_id", "family_id"], name: "index_libraries_on_book_id_and_family_id", unique: true
     t.index ["family_id"], name: "index_libraries_on_family_id"
   end
 
@@ -128,7 +126,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_29_002409) do
   add_foreign_key "authorships", "authors"
   add_foreign_key "authorships", "books"
   add_foreign_key "children", "families"
-  add_foreign_key "libraries", "books"
   add_foreign_key "libraries", "families"
   add_foreign_key "users", "families"
 end
