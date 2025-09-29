@@ -1,6 +1,5 @@
 class Library < ApplicationRecord
-  belongs_to :book
   belongs_to :family
-
-  validates :book_id, uniqueness: { scope: :family_id }
+  has_many :family_books, dependent: :destroy
+  has_many :books, through: :family_books
 end
