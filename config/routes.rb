@@ -15,9 +15,9 @@ Rails.application.routes.draw do
   end
 
   resource :family, only: %i[new edit create update] do
-    resources :libraries, only: %i[create destroy], module: :family
+    resources :libraries, only: %i[index show destroy], module: :family
   end
-  resources :books, only: %i[show] do
+  resources :books, only: %i[show create] do
     collection do
       get :search
     end
