@@ -1,6 +1,4 @@
-class Family::LibrariesController < ApplicationController
-  before_action :authenticate_user!
-
+class Family::LibrariesController < Family::ApplicationController
   def show
   end
 end
