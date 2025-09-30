@@ -1,6 +1,6 @@
 class LibraryBook < ApplicationRecord
-  belongs_to :library
+  belongs_to :family_library
   belongs_to :book
 
-  validates :library_id, unique: { scope: :book_id }
+  validates :family_library_id, uniqueness: { scope: :book_id }
 end

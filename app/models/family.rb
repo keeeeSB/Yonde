@@ -1,5 +1,5 @@
 class Family < ApplicationRecord
-  has_one :library, dependent: :destroy
+  has_one :family_library, dependent: :destroy
   has_many :users, dependent: :restrict_with_error
   has_many :children, dependent: :restrict_with_error
 

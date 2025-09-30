@@ -94,20 +94,20 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_29_153505) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "libraries", force: :cascade do |t|
+  create_table "family_libraries", force: :cascade do |t|
     t.bigint "family_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["family_id"], name: "index_libraries_on_family_id"
+    t.index ["family_id"], name: "index_family_libraries_on_family_id"
   end
 
   create_table "library_books", force: :cascade do |t|
-    t.bigint "library_id", null: false
+    t.bigint "family_library_id", null: false
     t.bigint "book_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_library_books_on_book_id"
-    t.index ["library_id", "book_id"], name: "index_library_books_on_library_id_and_book_id", unique: true
+    t.index ["family_library_id", "book_id"], name: "index_library_books_on_family_library_id_and_book_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -135,8 +135,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_29_153505) do
   add_foreign_key "authorships", "authors"
   add_foreign_key "authorships", "books"
   add_foreign_key "children", "families"
-  add_foreign_key "libraries", "families"
+  add_foreign_key "family_libraries", "families"
   add_foreign_key "library_books", "books"
-  add_foreign_key "library_books", "libraries"
+  add_foreign_key "library_books", "family_libraries"
   add_foreign_key "users", "families"
 end

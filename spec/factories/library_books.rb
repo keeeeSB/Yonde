@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :library_book do
-    library
+    family_library
     book
   end
 end
