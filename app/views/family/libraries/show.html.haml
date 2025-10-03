@@ -1,1 +1,10 @@
 %h3.text-center.mb-5 #{@family.name}家の本棚
+
+- if @family.family_library.books.exists?
+  .row.g-4
+    - @family.family_library.books.each do |book|
+      .col-md-4.mb-3
+        = image_tag book.image_url, class: 'image--card'
+
+- else
+  %p.text-center 登録している絵本がありません。
