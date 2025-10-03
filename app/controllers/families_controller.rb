@@ -1,4 +1,5 @@
-class Users::FamiliesController < Users::ApplicationController
+class FamiliesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_family, only: %i[edit update]
 
   def new

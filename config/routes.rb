@@ -12,10 +12,14 @@ Rails.application.routes.draw do
 
   scope module: :users do
     resource :profile, only: %i[show]
-    resource :family, only: %i[new edit create update]
   end
 
-  resources :books, only: %i[show] do
+  resource :family, only: %i[new edit create update] do
+    resource :library, only: %i[show], module: :family do
+      resources :library_books, only: %i[show destroy], module: :library
+    end
+  end
+  resources :books, only: %i[show create] do
     collection do
       get :search
     end
