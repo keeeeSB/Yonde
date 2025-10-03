@@ -3,7 +3,7 @@
     = image_tag google_book_thumbnail(@google_book), class: 'image--preview'
     .mt-4
       - systemid = params[:id]
-      - if current_user.family.libraries.exists?(book_id: systemid)
+      - if current_user.family.family_library&.books&.exists?(book_id: systemid)
         %p.fw-bold.text-secondary 本棚に登録済みです。
       - else
         = simple_form_for(Book.new, url: books_path, method: :post, html: { class: 'd-inline' }) do |f|
