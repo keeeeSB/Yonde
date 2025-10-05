@@ -12,6 +12,13 @@ require 'rspec/rails'
 require 'email_spec'
 require 'email_spec/rspec'
 require 'webmock/rspec'
+require 'vcr'
+
+VCR.configure do |c|
+  c.cassette_library_dir = 'spec/vcr_cassettes'
+  c.hook_into :webmock
+  c.ignore_localhost = true
+end
 
 WebMock.disable_net_connect!(allow_localhost: true)
 # Requires supporting ruby files with custom matchers and macros, etc, in
