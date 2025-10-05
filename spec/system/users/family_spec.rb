@@ -47,7 +47,7 @@ RSpec.describe '家族登録機能', type: :system do
         click_link '編集'
       end
 
-      expect(page).to have_current_path edit_family_path(user, family)
+      expect(page).to have_current_path edit_family_path(family)
       expect(page).to have_content '家族情報編集'
 
       all('.nested-fields').last.tap do |fields|

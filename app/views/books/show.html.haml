@@ -2,8 +2,7 @@
   .col-md-5.text-center
     = image_tag google_book_thumbnail(@google_book), class: 'image--preview'
     .mt-4
-      - systemid = params[:id]
-      - book = Book.find_by(systemid:)
+      - book = Book.find_by(systemid: params[:id])
       - if current_user.family.family_library&.library_books&.exists?(book:)
         %p.fw-bold.text-secondary 本棚に登録済みです。
       - else
