@@ -16,12 +16,10 @@
     - @google_books['items']&.each do |google_book|
       - systemid = google_book['id']
       .col-md-4.mb-3
-        = link_to book_path(systemid), class: 'text-decoration-none' do
+        = link_to book_path(systemid), class: 'text-decoration-none book-card' do
           = image_tag google_book_thumbnail(google_book), class: 'image--card'
 
-        %p
-          %strong タイトル:
-          = google_book['volumeInfo']['title']
+        %h5.mt-3.fw-bold= google_book['volumeInfo']['title']
         %p
           %strong 著者:
           = google_book['volumeInfo']['authors']&.join(', ').presence || '情報なし'

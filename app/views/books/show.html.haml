@@ -1,17 +1,39 @@
 .row.mt-5
-  .col-md-5
+  .col-md-5.text-center
     = image_tag google_book_thumbnail(@google_book), class: 'image--preview'
+    .mt-4
+      - book = Book.find_by(systemid: params[:id])
+      - if current_user.family.family_library&.library_books&.exists?(book:)
+        %p.fw-bold.text-secondary 本棚に登録済みです。
+      - else
+        = simple_form_for(Book.new, url: books_path, method: :post, html: { class: 'd-inline' }) do |f|
+          - book_params = build_google_book_params(@google_book)
+
+          = f.hidden_field :title, value: book_params['title']
+          = f.hidden_field :published_date, value: book_params['publishedDate']
+          = f.hidden_field :description, value: book_params['description']
+          = f.hidden_field :systemid, value: book_params['systemid']
+          = f.hidden_field :page_count, value: book_params['pageCount']
+          = f.hidden_field :image_url, value: book_params['bookImage']
+
+          - book_params['authors']&.each do |author|
+            = hidden_field_tag 'book[authors][]', author
+
+          = f.button :submit, '本棚に追加', class: 'btn btn-primary btn-sm'
 
   .col-md-7
     %table.table.table-bordered.w-100
       %tbody
+        - volume_info = @google_book['volumeInfo']
         %tr
           %th.text-center.w-25 タイトル
-          %td= @google_book['volumeInfo']['title']
+          %td= volume_info['title']
         %tr
           %th.text-center.w-25 著者
-          %td= @google_book['volumeInfo']['authors']&.join(', ').presence || '情報なし'
+          %td= volume_info['authors']&.join(', ').presence || '情報なし'
         %tr
           %th.text-center.w-25 出版日
-          %td= @google_book['volumeInfo']['publishedDate'].presence || '情報なし'
-
+          %td= volume_info['publishedDate'].presence || '情報なし'
+        %tr
+          %th.text-center.w-25 ページ数
+          %td= volume_info['pageCount'].presence || '情報なし'

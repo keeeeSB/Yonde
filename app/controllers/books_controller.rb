@@ -8,6 +8,19 @@ class BooksController < ApplicationController
     @google_book = JSON.parse(response.body)
   end
 
+  def create
+    ActiveRecord::Base.transaction do
+      @book = Book.create!(book_params)
+      params[:book][:authors].each do |author_name|
+        author = Author.find_or_create_by!(name: author_name)
+        Authorship.create!(book: @book, author:)
+      end
+      family_library = current_user.family.family_library || current_user.family.create_family_library!
+      family_library.library_books.create!(book: @book)
+    end
+    redirect_to family_library_path(current_user.family), notice: '絵本を本棚に登録しました。'
+  end
+
   def search
     if params[:search].nil?
       nil
@@ -23,6 +36,6 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.expect(book: %i[title published_date description isbn image_url])
+    params.expect(book: %i[title published_date description systemid page_count image_url])
   end
 end
