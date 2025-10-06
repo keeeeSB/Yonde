@@ -1,0 +1,23 @@
+.row.mt-5
+  .col-md-5.text-center
+    = image_tag @book.image_url, class: 'image--preview'
+
+  .col-md-7
+    %table.table.table-bordered.w-100
+      %tbody
+        %tr
+          %th.text-center.w-25 タイトル
+          %td= @book.title
+        %tr
+          %th.text-center.w-25 著者
+          %td
+            - if @book.authors.present?
+              = @book.authors.map(&:name).join(', ')
+            - else
+              情報なし
+        %tr
+          %th.text-center.w-25 出版日
+          %td= @book.published_date.presence || '情報なし'
+        %tr
+          %th.text-center.w-25 ページ数
+          %td= @book.page_count.presence || '情報なし'

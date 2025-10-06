@@ -12,6 +12,6 @@ class Family::Library::LibraryBooksController < Family::ApplicationController
   private
 
   def set_book
-    @book = @family.library.books.find(params[:id])
+    @book = @family.family_library.books.find(params[:id])
   end
 end
