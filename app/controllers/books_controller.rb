@@ -13,7 +13,7 @@ class BooksController < ApplicationController
       @book = Book.create!(book_params)
       params[:book][:authors].each do |author_name|
         author = Author.find_or_create_by!(name: author_name)
-        Authorship.create!(book: @book, author: author)
+        Authorship.create!(book: @book, author:)
       end
       family_library = current_user.family.family_library || current_user.family.create_family_library!
       family_library.library_books.create!(book: @book)

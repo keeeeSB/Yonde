@@ -1,5 +1,5 @@
 class Family::Library::LibraryBooksController < Family::ApplicationController
-  before_action :set_book, only: %i[show destroy]
+  before_action :set_book
 
   def show
   end
