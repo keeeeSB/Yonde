@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :child_reading_log do
-    child { nil }
-    reading_log { nil }
+    child
+    reading_log
   end
 end
