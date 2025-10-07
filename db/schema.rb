@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_29_153505) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_07_071204) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -110,6 +110,20 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_29_153505) do
     t.index ["family_library_id", "book_id"], name: "index_library_books_on_family_library_id_and_book_id", unique: true
   end
 
+  create_table "reading_logs", force: :cascade do |t|
+    t.date "read_on", null: false
+    t.integer "rating", null: false
+    t.text "memo"
+    t.bigint "user_id", null: false
+    t.bigint "book_id", null: false
+    t.bigint "family_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_reading_logs_on_book_id"
+    t.index ["family_id"], name: "index_reading_logs_on_family_id"
+    t.index ["user_id"], name: "index_reading_logs_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", default: "", null: false
@@ -138,5 +152,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_29_153505) do
   add_foreign_key "family_libraries", "families"
   add_foreign_key "library_books", "books"
   add_foreign_key "library_books", "family_libraries"
+  add_foreign_key "reading_logs", "books"
+  add_foreign_key "reading_logs", "families"
+  add_foreign_key "reading_logs", "users"
   add_foreign_key "users", "families"
 end
