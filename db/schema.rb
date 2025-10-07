@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_07_071204) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_07_184923) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -76,6 +76,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_07_071204) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["systemid"], name: "index_books_on_systemid", unique: true
+  end
+
+  create_table "child_reading_logs", force: :cascade do |t|
+    t.bigint "child_id", null: false
+    t.bigint "reading_log_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["child_id", "reading_log_id"], name: "index_child_reading_logs_on_child_id_and_reading_log_id", unique: true
+    t.index ["reading_log_id"], name: "index_child_reading_logs_on_reading_log_id"
   end
 
   create_table "children", force: :cascade do |t|
@@ -148,6 +157,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_07_071204) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "authorships", "authors"
   add_foreign_key "authorships", "books"
+  add_foreign_key "child_reading_logs", "children"
+  add_foreign_key "child_reading_logs", "reading_logs"
   add_foreign_key "children", "families"
   add_foreign_key "family_libraries", "families"
   add_foreign_key "library_books", "books"

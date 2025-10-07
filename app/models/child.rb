@@ -1,5 +1,6 @@
 class Child < ApplicationRecord
   belongs_to :family
+  has_many :child_reading_logs, dependent: :destroy
 
   enum :gender, { male: 0, female: 1 }
 
