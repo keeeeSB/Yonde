@@ -1,4 +1,4 @@
-class Family::Library::LibraryBooksController < Family::ApplicationController
+class Families::Libraries::LibraryBooksController < Families::ApplicationController
   before_action :set_book
 
   def show

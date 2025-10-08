@@ -15,8 +15,8 @@ Rails.application.routes.draw do
   end
 
   resource :family, only: %i[new edit create update] do
-    resource :library, only: %i[show], module: :family do
-      resources :library_books, only: %i[show destroy], module: :library
+    resource :library, only: %i[show], module: :families do
+      resources :library_books, only: %i[show destroy], module: :libraries
     end
   end
   resources :books, only: %i[show create] do
