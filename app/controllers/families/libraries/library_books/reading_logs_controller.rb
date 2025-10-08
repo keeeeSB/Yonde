@@ -1,24 +1,35 @@
 class Families::Libraries::LibraryBooks::ReadingLogsController < Families::Libraries::ApplicationController
-  def index
-    @reading_logs = 
-  end
-
-  def show
-  end
+  before_action :set_reading_log, only: %i[edit update destroy]
 
   def new
+    @reading_log = @book.reading_logs.build
   end
 
   def create
+    @reading_log = @book.reading_logs.build(reading_log_params)
+    if @reading_log.save
+      redirect_to family_library_library_book_path(@book), notice: '読み聞かせ記録を作成しました。'
+    else
+      flash.now[:alert] = '読み聞かせ記録を作成できませんでした。'
+      render :new, status: :unprocessable_content
+    end
   end
 
   def edit
   end
 
   def update
+    if @reading_log.update(reading_log_params)
+      redirect_to family_library_library_book_path(@book), notice: '読み聞かせ記録を更新しました。'
+    else
+      flash.now[:alert] = '読み聞かせ記録を更新できませんでした。'
+      render :edit, status: :unprocessable_content
+    end
   end
 
   def destroy
+    @reading_log.destroy!
+    redirect_to family_library_library_book_path(@book), notice: '読み聞かせ記録を削除しました。', status: :see_other
   end
 
   private
