@@ -1,4 +1,4 @@
-class Family::ApplicationController < ApplicationController
+class Families::ApplicationController < ApplicationController
   before_action :authenticate_user!
   before_action :set_family
 
