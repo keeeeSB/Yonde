@@ -5,6 +5,9 @@ class Families::Libraries::LibraryBooks::ReadingLogsController < Families::Libra
     @reading_log = @book.reading_logs.build
   end
 
+  def edit
+  end
+
   def create
     @reading_log = @book.reading_logs.build(reading_log_params)
     if @reading_log.save
@@ -13,9 +16,6 @@ class Families::Libraries::LibraryBooks::ReadingLogsController < Families::Libra
       flash.now[:alert] = '読み聞かせ記録を作成できませんでした。'
       render :new, status: :unprocessable_content
     end
-  end
-
-  def edit
   end
 
   def update

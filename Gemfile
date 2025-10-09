@@ -11,6 +11,7 @@ gem 'html2haml'
 gem 'image_processing', '~> 1.2'
 gem 'jsbundling-rails'
 gem 'kamal', require: false
+gem 'kaminari'
 gem 'pg', '~> 1.1'
 gem 'propshaft'
 gem 'puma', '>= 5.0'
@@ -23,7 +24,6 @@ gem 'stimulus-rails'
 gem 'thruster', require: false
 gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[windows jruby]
-gem 'kaminari'
 
 group :development, :test do
   gem 'brakeman', require: false

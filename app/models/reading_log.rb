@@ -10,6 +10,8 @@ class ReadingLog < ApplicationRecord
     good: 3,
   }
 
+  scope :default_order, -> { order(created_at: :desc, id: :desc) }
+
   validates :read_on, presence: true
   validates :rating, inclusion: { in: 1..3 }
   validates :memo, length: { maximum: 200 }
