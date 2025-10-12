@@ -3,6 +3,7 @@ class ReadingLog < ApplicationRecord
   belongs_to :book
   belongs_to :family
   has_many :child_reading_logs, dependent: :destroy
+  has_many :children, through: :child_reading_logs
 
   enum :rating, {
     bad: 1,
