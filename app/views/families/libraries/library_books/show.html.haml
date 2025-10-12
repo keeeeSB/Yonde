@@ -21,3 +21,6 @@
         %tr
           %th.text-center.w-25 ページ数
           %td= @book.page_count.presence || '情報なし'
+
+    .text-center.mt-5
+      = link_to '読み聞かせ記録を作成', new_family_library_library_book_reading_log_path(@book), class: 'btn btn-success custom-btn fw-bold'
