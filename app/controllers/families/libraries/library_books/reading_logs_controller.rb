@@ -35,7 +35,7 @@ class Families::Libraries::LibraryBooks::ReadingLogsController < Families::Libra
   private
 
   def reading_log_params
-    parmas.expect(reading_log: %i[read_on rating memo])
+    parmas.expect(reading_log: [:read_on, :rating, :memo, { child_ids: [] }])
   end
 
   def set_reading_log
