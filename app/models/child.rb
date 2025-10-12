@@ -4,6 +4,8 @@ class Child < ApplicationRecord
 
   enum :gender, { male: 0, female: 1 }
 
+  scope :default_order, -> { order(birthday: :desc, id: :desc) }
+
   validates :name, presence: true
   validates :birthday, presence: true
   validates :gender, presence: true
