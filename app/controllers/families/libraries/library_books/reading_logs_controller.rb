@@ -10,6 +10,7 @@ class Families::Libraries::LibraryBooks::ReadingLogsController < Families::Libra
 
   def create
     @reading_log = @book.reading_logs.build(reading_log_params)
+
     if @reading_log.save
       redirect_to family_library_library_book_path(@book), notice: '読み聞かせ記録を作成しました。'
     else
@@ -35,7 +36,7 @@ class Families::Libraries::LibraryBooks::ReadingLogsController < Families::Libra
   private
 
   def reading_log_params
-    params.expect(reading_log: [:read_on, :rating, :memo, { child_ids: [] }])
+    params.expect(reading_log: [:read_on, :rating, :memo, { child_ids: [] }]).merge(user_id: current_user.id, family_id: @family.id)
   end
 
   def set_reading_log
