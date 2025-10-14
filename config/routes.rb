@@ -10,6 +10,10 @@ Rails.application.routes.draw do
     root 'static_pages#dashboard'
   end
 
+  authenticated :user do
+    root 'families/reading_logs#index', as: :authenticated_user_root
+  end
+
   scope module: :users do
     resource :profile, only: %i[show]
   end
