@@ -12,6 +12,11 @@ ja:
         gender:
           male: 男の子
           female: 女の子
+      reading_log:
+        rating:
+          bad: 😞 悪い
+          normal: 😐 普通
+          good: 😄 良い
   date:
     abbr_day_names:
       - 日
@@ -46,7 +51,7 @@ ja:
     formats:
       default: "%Y/%m/%d"
       long: "%Y年%m月%d日(%a)"
-      short: "%m/%d"
+      short: "%-m月%-d日"
       yyyymm: '%Y/%m'
       mmdda: '%m/%d (%a)'
     month_names:
