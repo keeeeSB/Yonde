@@ -3,7 +3,7 @@
   = f.input :birthday, html5: true, input_html: { max: '9999-12-31' }
   = f.input :gender,
             as: :select,
-            collection: Child.genders.keys.map { |g| [I18n.t("activerecord.enums.child.gender.#{g}", default: g.to_s), g] },
+            collection: Child.genders.keys.map { |g| [I18n.t("activerecord.enums.child.gender.#{g}"), g] },
             include_blank: '選択してください'
 
   .d-flex.justify-content-end

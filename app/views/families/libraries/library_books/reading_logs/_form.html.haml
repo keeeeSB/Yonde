@@ -4,7 +4,7 @@
   .form-inputs
     = f.input :read_on, html5: true, input_html: { max: '9999-12-31' }, autofocus: true
     = f.association :children,
-                    collection: @family.children.default_order,
+                    collection: family.children.default_order,
                     as: :check_boxes,
                     item_wrapper_class: 'form-check',
                     input_html: { class: 'form-check-input' },
@@ -12,7 +12,7 @@
                     hint: '複数選択可能です。'
     = f.input :rating,
               as: :radio_buttons,
-              collection: [['😞 よくなかった', 'bad'], ['🙂 ふつう', 'normal'], ['☺️ よかった', 'good']],
+              collection: ReadingLog.ratings.keys.map { |r| [I18n.t("activerecord.enums.reading_log.rating.#{r}"), r] },
               item_wrapper_class: 'form-check',
               input_html: { class: 'btn-check' },
               label_method: :first,
@@ -23,4 +23,4 @@
 
   .form-actions.text-center
     = f.button :submit, class: 'btn btn-outline-primary me-3'
-    = link_to 'キャンセルする', family_library_path(@family), class: 'btn btn-link'
+    = link_to 'キャンセルする', family_library_path(family), class: 'btn btn-link'
