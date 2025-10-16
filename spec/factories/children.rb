@@ -3,5 +3,6 @@ FactoryBot.define do
     name { '一郎' }
     birthday { '2024-01-01' }
     gender { 0 }
+    family
   end
 end
