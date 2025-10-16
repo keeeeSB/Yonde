@@ -16,6 +16,9 @@
                   読んだ日：
                   %strong= l(log.read_on, format: :short)
                 %p.mb-1.small
+                  読んだ人：
+                  %strong= log.user.name
+                %p.mb-1.small
                   読み聞かせた子：
                   - log.children.each do |child|
                     %span.badge.bg-primary= child.name

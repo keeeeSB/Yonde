@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe '読み聞かせ記録機能', type: :system do
   let(:family) { create(:family, name: '佐藤') }
-  let(:user) { create(:user, name: 'アリス', family:) }
+  let(:alice) { create(:user, name: 'アリス', family:) }
   let(:book) { create(:book, title: 'おしり探偵') }
   let!(:child) { create(:child, name: 'ボブ', family:) }
   let(:family_library) { create(:family_library, family:) }
@@ -10,7 +10,7 @@ RSpec.describe '読み聞かせ記録機能', type: :system do
 
   describe '読み聞かせ記録の作成' do
     it 'ログイン中のユーザーは絵本を選択し、読み聞かせ記録を作成できる' do
-      login_as user, scope: :user
+      login_as alice, scope: :user
       visit family_library_library_book_path(book)
 
       expect(page).to have_content 'おしり探偵'
@@ -29,6 +29,32 @@ RSpec.describe '読み聞かせ記録機能', type: :system do
         expect(page).to have_content '読み聞かせ記録を作成しました。'
         expect(page).to have_current_path family_library_library_book_path(book)
       end.to change(ReadingLog, :count).by(1)
+    end
+  end
+
+  describe '読み聞かせ記録の一覧表示' do
+    let(:carol) { create(:user, name: 'キャロル', family:) }
+    let!(:reading_log1) { create(:reading_log, rating: 3, user: alice, book:, family:) }
+    let!(:reading_log2) { create(:reading_log, rating: 2, user: carol, book:, family:) }
+
+    before do
+      create(:child_reading_log, child:, reading_log: reading_log1)
+      create(:child_reading_log, child:, reading_log: reading_log2)
+    end
+
+    it 'ログイン中のrootページに、家族の読み聞かせ記録が一覧表示される' do
+      login_as alice, scope: :user
+      visit root_path
+
+      expect(page).to have_content 'おしり探偵'
+      expect(page).to have_content '読んだ人： アリス'
+      expect(page).to have_content '読み聞かせた子： ボブ'
+      expect(page).to have_content 'よかった'
+
+      expect(page).to have_content 'おしり探偵'
+      expect(page).to have_content '読んだ人： キャロル'
+      expect(page).to have_content '読み聞かせた子： ボブ'
+      expect(page).to have_content 'ふつう'
     end
   end
 end
