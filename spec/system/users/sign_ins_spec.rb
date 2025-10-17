@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'ログイン機能', type: :system do
-  let!(:user) { create(:user, name: 'アリス', email: 'alice@example.com', password: 'password12345', confirmed_at: Time.current) }
+  let!(:user) { create(:user, name: 'アリス', email: 'alice@example.com', password: 'password12345', confirmed_at: Time.current, family_id: nil) }
 
   describe 'ユーザーログイン' do
     it 'ユーザーはログインできる' do
@@ -20,6 +20,11 @@ RSpec.describe 'ログイン機能', type: :system do
   end
 
   describe 'ユーザーログアウト' do
+    before do
+      family = create(:family)
+      user.update!(family_id: family.id)
+    end
+
     it 'ログイン中のユーザーはログアウトできる' do
       login_as user, scope: :user
 
