@@ -57,4 +57,28 @@ RSpec.describe '読み聞かせ記録機能', type: :system do
       expect(page).to have_content 'ふつう'
     end
   end
+
+  describe '読み聞かせ記録の編集' do
+    let!(:reading_log) { create(:reading_log, user: alice, book:, family:) }
+
+    before do
+      create(:child_reading_log, child:, reading_log:)
+    end
+
+    it 'ログイン中のユーザーは、自身が作成した読み聞かせ記録を編集できる' do
+      login_as alice, scope: :user
+      visit root_path
+
+      expect(page).to have_content '佐藤家の読み聞かせ記録'
+      expect(page).to have_content 'おしり探偵'
+      expect(page).to have_content '読んだ人： アリス'
+      expect(page).to have_content '読み聞かせた子： ボブ'
+
+      click_link '編集'
+
+    end
+  end
+
+  describe '読み聞かせ記録の削除' do
+  end
 end
