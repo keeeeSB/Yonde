@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe '家族登録機能', type: :system do
-  let!(:user) { create(:user, name: 'アリス', email: 'alice@example.com', password: 'password12345') }
+  let!(:user) { create(:user, name: 'アリス', email: 'alice@example.com', password: 'password12345', family_id: nil) }
 
   describe '家族登録' do
     it 'ユーザーはユーザー登録、ログイン後、家族登録ページにリダイレクトされ家族情報を登録できる' do

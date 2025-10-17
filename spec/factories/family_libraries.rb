@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :library do
+  factory :family_library do
     family
   end
 end

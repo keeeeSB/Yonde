@@ -1,7 +1,10 @@
 class Child < ApplicationRecord
   belongs_to :family
+  has_many :child_reading_logs, dependent: :destroy
 
   enum :gender, { male: 0, female: 1 }
+
+  scope :default_order, -> { order(birthday: :desc, id: :desc) }
 
   validates :name, presence: true
   validates :birthday, presence: true
