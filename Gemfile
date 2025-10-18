@@ -11,6 +11,7 @@ gem 'html2haml'
 gem 'image_processing', '~> 1.2'
 gem 'jsbundling-rails'
 gem 'kamal', require: false
+gem 'kaminari'
 gem 'pg', '~> 1.1'
 gem 'propshaft'
 gem 'puma', '>= 5.0'

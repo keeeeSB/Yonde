@@ -10,13 +10,20 @@ Rails.application.routes.draw do
     root 'static_pages#dashboard'
   end
 
+  authenticated :user do
+    root 'families/reading_logs#index', as: :authenticated_user_root
+  end
+
   scope module: :users do
     resource :profile, only: %i[show]
   end
 
   resource :family, only: %i[new edit create update] do
-    resource :library, only: %i[show], module: :family do
-      resources :library_books, only: %i[show destroy], module: :library
+    resources :reading_logs, only: %i[index], module: :families
+    resource :library, only: %i[show], module: :families do
+      resources :books, only: %i[show destroy], module: :libraries do
+        resources :reading_logs, only: %i[new edit create update destroy], module: :books
+      end
     end
   end
   resources :books, only: %i[show create] do

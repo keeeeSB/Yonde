@@ -1,0 +1,43 @@
+%h3.text-center.mb-4 #{@family.name}家の読み聞かせ記録
+
+.row.justify-content-center
+  .col-md-10
+    - if @reading_logs.exists?
+      - @reading_logs.preload(:user, :children).each do |log|
+        .card.mb-3.shadow-sm.border-0.rounded-3
+          .row.g-0.align-items-center
+            .col-md-4.text-center.p-3
+              = image_tag log.book.image_url, class: 'img-fluid rounded image--log'
+
+            .col-md-8
+              .card-body.py-3
+                %h5.card-title.fw-semibold.mb-2= log.book.title
+                %p.mb-1.small
+                  読んだ日：
+                  %strong= l(log.read_on, format: :short)
+                %p.mb-1.small
+                  読んだ人：
+                  %strong= log.user.name
+                %p.mb-1.small
+                  読み聞かせた子：
+                  - log.children.each do |child|
+                    %span.badge.bg-primary= child.name
+                .mb-1
+                  %span.badge.bg-light.text-dark.border.fs-6.py-2.px-3
+                    = I18n.t("activerecord.enums.reading_log.rating.#{log.rating}")
+                - if log.memo.present?
+                  %p.mb-1.small
+                    メモ：
+                    = log.memo
+                - if log.user == current_user
+                  .d-flex.justify-content-end.gap-2
+                    = link_to '編集', edit_family_library_book_reading_log_path(log.book, log), class: 'btn btn-warning btn-sm'
+                    = button_to '削除',
+                                family_library_book_reading_log_path(log.book, log),
+                                method: :delete,
+                                data: { turbo_confirm: '本当に削除しますか？' },
+                                class: 'btn btn-danger btn-sm'
+
+    - else
+      .text-center.text-muted.py-5
+        読み聞かせ記録がありません。
