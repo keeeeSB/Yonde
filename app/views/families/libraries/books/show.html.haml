@@ -23,12 +23,12 @@
           %td= @book.page_count.presence || '情報なし'
 
     .text-center.mt-5
-      = link_to '読み聞かせ記録を作成', new_family_library_library_book_reading_log_path(@book), class: 'btn btn-success custom-btn fw-bold'
+      = link_to '読み聞かせ記録を作成', new_family_library_book_reading_log_path(@book), class: 'btn btn-success custom-btn fw-bold'
 
 .row.justify-content-center
   .col-md-8
     - if @book.reading_logs.exists?
-      - @book.reading_logs.preload(:children).each do |log|
+      - @book.reading_logs.preload(:user, :children).each do |log|
         .card.mb-3.shadow-sm.border-0.rounded-3
           .card-body.py-3
             %h5.card-title.fw-semibold.mb-2= log.book.title
@@ -49,3 +49,11 @@
               %p.mb-1.small
                 メモ：
                 = log.memo
+            - if log.user == current_user
+              .d-flex.justify-content-end.gap-2
+                = link_to '編集', edit_family_library_book_reading_log_path(log.book, log), class: 'btn btn-warning btn-sm'
+                = button_to '削除',
+                            family_library_book_reading_log_path(log.book, log),
+                            method: :delete,
+                            data: { turbo_confirm: '本当に削除しますか？' },
+                            class: 'btn btn-danger btn-sm'

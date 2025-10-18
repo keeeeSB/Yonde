@@ -1,4 +1,4 @@
-= simple_form_for([family, library, book, reading_log], url: family_library_library_book_reading_logs_path(book)) do |f|
+= simple_form_for([:family, :library, book, reading_log]) do |f|
   = f.error_notification
 
   .form-inputs

@@ -1,4 +1,4 @@
-class Families::Libraries::LibraryBooksController < Families::Libraries::ApplicationController
+class Families::Libraries::BooksController < Families::Libraries::ApplicationController
   def show
   end
 

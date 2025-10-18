@@ -4,6 +4,10 @@ class Families::Libraries::ApplicationController < Families::ApplicationControll
   private
 
   def set_book
-    @book = @family.family_library.books.find(params.fetch(:id, params[:library_book_id]))
+    @book = if params[:book_id].present?
+              @family.family_library.books.find(params[:book_id])
+            else
+              @family.family_library.books.find(params[:id])
+            end
   end
 end
