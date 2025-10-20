@@ -1,0 +1,30 @@
+.row.justify-content-center
+  .col-md-9
+    .card.mb-3.shadow-sm.border-0.rounded-3
+      .card-body.py-3
+        %h5.card-title.fw-semibold.mb-2= @reading_log.book.title
+        %p.mb-1.small
+          読んだ日：
+          %strong= l(@reading_log.read_on, format: :short)
+        %p.mb-1.small
+          読んだ人：
+          %strong= @reading_log.user.name
+        %p.mb-1.small
+          読み聞かせた子：
+          - @reading_log.children.each do |child|
+            %span.badge.bg-primary= child.name
+        .mb-1
+          %span.badge.bg-light.text-dark.border.fs-6.py-2.px-3
+            = I18n.t("activerecord.enums.reading_log.rating.#{@reading_log.rating}")
+        - if @reading_log.memo.present?
+          %p.mb-1.small
+            メモ：
+            = @reading_log.memo
+        - if @reading_log.user == current_user
+          .d-flex.justify-content-end.gap-2
+            = link_to '編集', edit_family_library_book_reading_log_path(@reading_log.book, @reading_log), class: 'btn btn-warning'
+            = button_to '削除',
+                        family_library_book_reading_log_path(@reading_log.book, @reading_log),
+                        method: :delete,
+                        data: { turbo_confirm: '本当に削除しますか？' },
+                        class: 'btn btn-danger'

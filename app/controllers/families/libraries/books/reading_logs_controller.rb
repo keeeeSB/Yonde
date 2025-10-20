@@ -1,6 +1,6 @@
-class Families::Libraries::Books::ReadingLogsController < Families::Libraries::ApplicationController
-  before_action :set_reading_log, only: %i[edit update destroy]
-
+class Families::Libraries::Books::ReadingLogsController < Families::Libraries::Books::ApplicationController
+  def show
+  end
   def new
     @reading_log = @book.reading_logs.build
   end
@@ -37,9 +37,5 @@ class Families::Libraries::Books::ReadingLogsController < Families::Libraries::A
 
   def reading_log_params
     params.expect(reading_log: [:read_on, :rating, :memo, { child_ids: [] }]).merge(user_id: current_user.id, family_id: @family.id)
-  end
-
-  def set_reading_log
-    @reading_log = @book.reading_logs.find(params[:id])
   end
 end
