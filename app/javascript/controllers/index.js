@@ -7,5 +7,8 @@ import { application } from "./application"
 import ChildrenController from "./children_controller"
 application.register("children", ChildrenController)
 
+import CommentFormsButtonController from "./comment_forms_button_controller"
+application.register("comment-forms-button", CommentFormsButtonController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)

@@ -30,9 +30,18 @@
                         class: 'btn btn-danger'
 .row.justify-content-center
   .col-md-8
+    .text-center.mt-3{ data: { controller: 'comment-forms-button' } }
+      %button.btn.btn-outline-primary.btn-sm.mb-3{ data: {
+          action: 'click->comment-forms-button#toggleForm',
+          comment_forms_button_target: 'button',
+        }
+      }
+        コメントする
+
+      .comment-form-wrapper.d-none{ data: { comment_forms_button_target: 'form' } }
+        = render 'families/libraries/books/reading_logs/comment_form', family: @family, library: @family.family_library, book: @book, reading_log: @reading_log, comment: Comment.new
+
     %h5.mt-3.text-center コメント一覧
     - if @reading_log.comments.exists?
-      - @reading_log.comments.each do |comment|
+      - @reading_log.comments.default_order.each do |comment|
         = render 'families/libraries/books/reading_logs/comment', family: @family, library: @family.family_library, book: @book, reading_log: @reading_log, comment:
-
-    = render 'families/libraries/books/reading_logs/comment_form', family: @family, library: @family.family_library, book: @book, reading_log: @reading_log, comment: Comment.new
