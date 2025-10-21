@@ -1,0 +1,9 @@
+= simple_form_for([:family, :library, book, reading_log, comment]) do |f|
+  = f.error_notification
+
+  .form-input
+    = f.input :body, as: :text, input_html: { rows: 4 }
+
+  .form-actions.text-end
+    = f.button :submit, class: 'btn btn-primary btn-sm me-3'
+    = link_to 'キャンセルする', family_library_book_reading_log_path(book, reading_log), class: 'btn btn-link btn-sm'

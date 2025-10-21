@@ -1,6 +1,7 @@
 class Families::Libraries::Books::ReadingLogsController < Families::Libraries::Books::ApplicationController
   def show
   end
+
   def new
     @reading_log = @book.reading_logs.build
   end

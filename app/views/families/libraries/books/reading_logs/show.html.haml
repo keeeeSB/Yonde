@@ -28,3 +28,11 @@
                         method: :delete,
                         data: { turbo_confirm: '本当に削除しますか？' },
                         class: 'btn btn-danger'
+.row.justify-content-center
+  .col-md-8
+    %h5.mt-3.text-center コメント一覧
+    - if @reading_log.comments.exists?
+      - @reading_log.comments.each do |comment|
+        = render 'families/libraries/books/reading_logs/comment', family: @family, library: @family.family_library, book: @book, reading_log: @reading_log, comment:
+
+    = render 'families/libraries/books/reading_logs/comment_form', family: @family, library: @family.family_library, book: @book, reading_log: @reading_log, comment: Comment.new

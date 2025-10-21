@@ -1,0 +1,10 @@
+.card.mb-3.shadow-sm.border-0.rounded-3
+  .card-body.p-2
+    %small.text-muted= "#{comment.user.name} #{l(comment.created_at, format: :default)}"
+    %p.my-2= comment.body
+    - if comment.user == current_user
+      .text-end
+        = button_to '削除', family_library_book_reading_log_comment_path(comment.reading_log.book, comment.reading_log, comment),
+                    method: :delete,
+                    data: { turbo_confirm: '削除してもよろしいですか？' },
+                    class: 'btn btn-sm btn-outline-danger'

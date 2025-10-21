@@ -17,3 +17,5 @@ ja:
         children: 読み聞かせた子
         rating: 評価
         memo: メモ
+      comment:
+        body: コメント
