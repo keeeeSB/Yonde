@@ -6,7 +6,6 @@ class Families::Libraries::Books::ReadingLogs::CommentsController < Families::Li
     if @comment.save
       redirect_to family_library_book_reading_log_path(@book, @reading_log), notice: 'コメントを投稿しました。'
     else
-      puts @comment.errors.full_messages
       redirect_to family_library_book_reading_log_path(@book, @reading_log), alert: 'コメントを投稿できませんでした。'
     end
   end
