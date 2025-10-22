@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_07_184923) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_18_225854) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -97,6 +97,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_07_184923) do
     t.index ["family_id"], name: "index_children_on_family_id"
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.text "body", null: false
+    t.bigint "user_id", null: false
+    t.bigint "reading_log_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reading_log_id"], name: "index_comments_on_reading_log_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
   create_table "families", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -160,6 +170,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_07_184923) do
   add_foreign_key "child_reading_logs", "children"
   add_foreign_key "child_reading_logs", "reading_logs"
   add_foreign_key "children", "families"
+  add_foreign_key "comments", "reading_logs"
+  add_foreign_key "comments", "users"
   add_foreign_key "family_libraries", "families"
   add_foreign_key "library_books", "books"
   add_foreign_key "library_books", "family_libraries"

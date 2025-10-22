@@ -2,7 +2,7 @@
 
 - if @family.family_library.books.exists?
   .row.g-4
-    - @family.family_library.books.preload(:authors).each do |book|
+    - @family.family_library.books.preload(:authors).find_each do |book|
       .col-md-4.mb-3
         = link_to family_library_book_path(book), class: 'text-decoration-none book-card' do
           = image_tag book.image_url, class: 'image--card'

@@ -1,0 +1,8 @@
+= simple_form_for([:family, :library, book, reading_log, comment]) do |f|
+  = f.error_notification
+
+  .form-input
+    = f.input :body, as: :text, input_html: { rows: 4 }
+
+  .form-actions.text-end.mb-3
+    = f.button :submit, '投稿する', class: 'btn btn-primary btn-sm'

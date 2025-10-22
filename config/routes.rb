@@ -22,7 +22,9 @@ Rails.application.routes.draw do
     resources :reading_logs, only: %i[index], module: :families
     resource :library, only: %i[show], module: :families do
       resources :books, only: %i[show destroy], module: :libraries do
-        resources :reading_logs, only: %i[new edit create update destroy], module: :books
+        resources :reading_logs, only: %i[show new edit create update destroy], module: :books do
+          resources :comments, only: %i[create update destroy], module: :reading_logs
+        end
       end
     end
   end
