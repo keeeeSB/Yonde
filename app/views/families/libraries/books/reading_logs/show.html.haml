@@ -31,10 +31,7 @@
 .row.justify-content-center
   .col-md-8
     .text-center.mt-3{ data: { controller: 'comment-forms-button' } }
-      %button.btn.btn-outline-primary.btn-sm.mb-3{data: {
-                                                    action: 'click->comment-forms-button#toggleForm',
-                                                    comment_forms_button_target: 'button',
-                                                  }}
+      %button.btn.btn-outline-primary.btn-sm.mb-3{ data: { action: 'click->comment-forms-button#toggleForm', comment_forms_button_target: 'button' } }
         コメントする
 
       .comment-form-wrapper.d-none{ data: { comment_forms_button_target: 'form' } }
@@ -44,3 +41,5 @@
     - if @reading_log.comments.exists?
       - @reading_log.comments.default_order.each do |comment|
         = render 'families/libraries/books/reading_logs/comment', family: @family, library: @family.family_library, book: @book, reading_log: @reading_log, comment:
+    - else
+      %p.text-center コメントがありません。

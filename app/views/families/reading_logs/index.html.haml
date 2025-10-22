@@ -3,7 +3,7 @@
 .row.justify-content-center
   .col-md-10
     - if @reading_logs.exists?
-      - @reading_logs.preload(:user, :children).each do |log|
+      - @reading_logs.preload(:user, :children).find_each do |log|
         .card.mb-3.shadow-sm.border-0.rounded-3
           .row.g-0.align-items-center
             .col-md-4.text-center.p-3

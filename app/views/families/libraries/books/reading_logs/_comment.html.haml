@@ -1,4 +1,4 @@
-.card.mb-4.shadow-sm.border-0.rounded-3
+.card.mb-4.shadow-sm.border-0.rounded-3{ data: { test_class: 'comment-card' } }
   .card-body.p-2{ data: { controller: 'comment-toggle' } }
 
     .comment-display{ data: { comment_toggle_target: 'display' } }
@@ -6,19 +6,11 @@
       %p.my-2= comment.body
 
     .comment-form-wrapper.d-none{ data: { comment_toggle_target: 'form' } }
-      = render 'families/libraries/books/reading_logs/comment_form',
-               family: @family,
-               library: @family.family_library,
-               book: @book,
-               reading_log: comment.reading_log,
-               comment: comment
+      = render 'families/libraries/books/reading_logs/comment_form', family:, library:, book:, reading_log:, comment:
 
     - if comment.user == current_user
       .d-flex.justify-content-end.gap-1
-        %button.btn.btn-sm.btn-outline-warning.me-2{data: {
-                                                      action: 'click->comment-toggle#toggleForm',
-                                                      comment_toggle_target: 'button',
-                                                    }}
+        %button.btn.btn-sm.btn-outline-warning.me-2{ data: { action: 'click->comment-toggle#toggleForm', comment_toggle_target: 'button' } }
           編集
 
         = button_to '削除',

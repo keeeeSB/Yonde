@@ -28,7 +28,7 @@
 .row.justify-content-center
   .col-md-8
     - if @book.reading_logs.exists?
-      - @book.reading_logs.preload(:user, :children).each do |log|
+      - @book.reading_logs.preload(:user, :children).find_each do |log|
         = link_to family_library_book_reading_log_path(log.book, log), class: 'text-decoration-none link-dark' do
           .card.mb-3.shadow-sm.border-0.rounded-3
             .card-body.py-3

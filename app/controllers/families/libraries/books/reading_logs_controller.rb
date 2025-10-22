@@ -1,4 +1,5 @@
 class Families::Libraries::Books::ReadingLogsController < Families::Libraries::Books::ApplicationController
+  skip_before_action :set_reading_log, only: %i[new create]
   def show
   end
 
