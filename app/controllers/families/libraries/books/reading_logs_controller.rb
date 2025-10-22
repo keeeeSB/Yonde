@@ -38,6 +38,6 @@ class Families::Libraries::Books::ReadingLogsController < Families::Libraries::B
   private
 
   def reading_log_params
-    params.expect(reading_log: [:read_on, :rating, :memo, { child_ids: [] }]).merge(user_id: current_user.id, family_id: @family.id)
+    params.expect(reading_log: [:read_on, :rating, :memo, { child_ids: [] }]).merge(user: current_user, family: @family)
   end
 end
