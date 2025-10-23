@@ -19,3 +19,5 @@ ja:
         memo: メモ
       comment:
         body: コメント
+      family_invitation:
+        email: メールアドレス
