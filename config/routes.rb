@@ -20,6 +20,11 @@ Rails.application.routes.draw do
 
   resource :family, only: %i[new edit create update] do
     resources :reading_logs, only: %i[index], module: :families
+    resources :invitations, only: %i[new create], module: :families do
+      collection do
+        get :complete
+      end
+    end
     resource :library, only: %i[show], module: :families do
       resources :books, only: %i[show destroy], module: :libraries do
         resources :reading_logs, only: %i[show new edit create update destroy], module: :books do
@@ -31,6 +36,11 @@ Rails.application.routes.draw do
   resources :books, only: %i[show create] do
     collection do
       get :search
+    end
+  end
+  resources :family_invitations, only: [] do
+    collection do
+      get :accept
     end
   end
 
