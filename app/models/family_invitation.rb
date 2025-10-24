@@ -1,7 +1,7 @@
 class FamilyInvitation < ApplicationRecord
   belongs_to :family
 
-  before_create :generate_token
+  before_validation :generate_token, on: :create
 
   validates :email, presence: true
   validates :token, presence: true, uniqueness: true
