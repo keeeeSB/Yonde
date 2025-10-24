@@ -15,7 +15,7 @@ class Users::SessionsController < Devise::SessionsController
     if resource.family.present?
       root_path
     else
-      new_family_path(current_user)
+      new_family_path
     end
   end
 end

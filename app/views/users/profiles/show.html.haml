@@ -26,6 +26,13 @@
           %strong 苗字：
           = current_user.family.name
 
+        %p
+          %strong 大人：
+          - current_user.family.users.each do |user|
+            .mb-1
+              = user.name
+        = link_to '家族を招待する', new_family_invitation_path(current_user.family), class: 'btn btn-outline-secondary btn-smd-inline-block mx-auto'
+
         - if current_user.family.children.exists?
           %p
             %strong お子様：
