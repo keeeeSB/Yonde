@@ -3,6 +3,7 @@ class Family < ApplicationRecord
   has_many :users, dependent: :destroy
   has_many :children, dependent: :destroy
   has_many :reading_logs, dependent: :destroy
+  has_many :family_invitations, dependent: :destroy
 
   accepts_nested_attributes_for :children
 
