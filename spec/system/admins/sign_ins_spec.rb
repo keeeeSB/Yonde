@@ -8,7 +8,7 @@ RSpec.describe '管理者ログイン', type: :system do
 
     fill_in 'メールアドレス', with: 'alice@example.com'
     fill_in 'パスワード', with: 'password12345'
-    click_button 'ログイン'
+    click_button 'ログインする'
 
     expect(page).to have_content 'ログインしました。'
     expect(page).to have_current_path admins_root_path

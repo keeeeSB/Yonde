@@ -13,7 +13,7 @@ RSpec.describe 'ログイン機能', type: :system do
       fill_in 'パスワード', with: 'password12345'
       click_button 'ログインする'
 
-      expect(page).to have_content 'ログインしました。'
+      expect(page).to have_content 'ログインしました。家族情報を登録してください。'
       expect(page).to have_current_path new_family_path(user)
       expect(page).to have_content 'アリス'
     end
