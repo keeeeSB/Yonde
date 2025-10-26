@@ -23,23 +23,19 @@
 
       .card.shadow-sm.p-4{ data: { test: 'family-card' } }
         %p
-          %strong 苗字：
-          = current_user.family.name
-
-        %p
-          %strong 大人：
+          %strong 大人
           - current_user.family.users.each do |user|
             .mb-1
               = user.name
-        = link_to '家族を招待する', new_family_invitation_path(current_user.family), class: 'btn btn-outline-secondary btn-smd-inline-block mx-auto'
+        = link_to '家族を招待する', new_family_invitation_path(current_user.family), class: 'btn btn-outline-secondary btn-sm mx-auto'
 
         - if current_user.family.children.exists?
           %p
-            %strong お子様：
+            %strong お子様
             - current_user.family.children.each do |child|
               .d-flex.gap-2.mb-3
                 = child.name
                 = render 'users/profiles/gender_status_badge', child:
                 = child.age
 
-        = link_to '編集', edit_family_path(current_user.family), class: 'btn btn-outline-warning btn-sm  d-inline-block mx-auto'
+        = link_to '編集', edit_family_path(current_user.family), class: 'btn btn-outline-warning btn-sm mx-auto'
