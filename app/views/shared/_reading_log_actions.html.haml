@@ -1,0 +1,22 @@
+.d-flex.justify-content-end.gap-2
+  - if reading_log.likes.exists?(user: current_user)
+    = button_to 'いいね👍',
+                family_library_book_reading_log_like_path(reading_log.book, reading_log),
+                method: :delete,
+                class: 'btn btn-primary btn-sm'
+  - else
+    = button_to 'いいね👍',
+                family_library_book_reading_log_like_path(reading_log.book, reading_log),
+                method: :post,
+                class: 'btn btn-outline-primary btn-sm'
+
+  - unless current_page?(family_library_book_reading_log_path(reading_log.book, reading_log))
+    = link_to '詳細', family_library_book_reading_log_path(reading_log.book, reading_log), class: 'btn btn-secondary btn-sm'
+
+  - if reading_log.user == current_user
+    = link_to '編集', edit_family_library_book_reading_log_path(reading_log.book, reading_log), class: 'btn btn-warning btn-sm'
+    = button_to '削除',
+                family_library_book_reading_log_path(reading_log.book, reading_log),
+                method: :delete,
+                data: { turbo_confirm: '本当に削除しますか？' },
+                class: 'btn btn-danger btn-sm'

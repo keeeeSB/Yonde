@@ -29,19 +29,7 @@
                   %p.mb-1.small
                     メモ：
                     = log.memo
-                .d-flex.justify-content-end.gap-2
-                  - if log.likes.exists?(user: current_user)
-                    = button_to 'いいね👍', family_library_book_reading_log_like_path(log.book, log), method: :delete, class: 'btn btn-primary btn-sm'
-                  - else
-                    = button_to 'いいね👍', family_library_book_reading_log_like_path(log.book, log), method: :post, class: 'btn btn-outline-primary btn-sm'
-
-                  - if log.user == current_user
-                    = link_to '編集', edit_family_library_book_reading_log_path(log.book, log), class: 'btn btn-warning btn-sm'
-                    = button_to '削除',
-                                family_library_book_reading_log_path(log.book, log),
-                                method: :delete,
-                                data: { turbo_confirm: '本当に削除しますか？' },
-                                class: 'btn btn-danger btn-sm'
+                = render 'shared/reading_log_actions', reading_log: log
 
     - else
       .text-center.text-muted.py-5

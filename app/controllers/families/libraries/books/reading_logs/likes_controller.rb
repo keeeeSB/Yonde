@@ -18,6 +18,6 @@ class Families::Libraries::Books::ReadingLogs::LikesController < Families::Libra
   private
 
   def set_like
-    @like = current_user.likes.find(params[:id])
+    @like = current_user.likes.find_by(reading_log: @reading_log)
   end
 end
