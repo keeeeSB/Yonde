@@ -3,7 +3,7 @@
 .row.justify-content-center
   .col-md-10
     - if @reading_logs.exists?
-      - @reading_logs.preload(:user, :children).find_each do |log|
+      - @reading_logs.preload(:user, :children).default_order.each do |log|
         .card.mb-3.shadow-sm.border-0.rounded-3
           .row.g-0.align-items-center
             .col-md-4.text-center.p-3
@@ -29,14 +29,7 @@
                   %p.mb-1.small
                     メモ：
                     = log.memo
-                - if log.user == current_user
-                  .d-flex.justify-content-end.gap-2
-                    = link_to '編集', edit_family_library_book_reading_log_path(log.book, log), class: 'btn btn-warning btn-sm'
-                    = button_to '削除',
-                                family_library_book_reading_log_path(log.book, log),
-                                method: :delete,
-                                data: { turbo_confirm: '本当に削除しますか？' },
-                                class: 'btn btn-danger btn-sm'
+                = render 'shared/reading_log_actions', reading_log: log
 
     - else
       .text-center.text-muted.py-5

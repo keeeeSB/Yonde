@@ -5,6 +5,7 @@ class ReadingLog < ApplicationRecord
   has_many :child_reading_logs, dependent: :destroy
   has_many :children, through: :child_reading_logs
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   enum :rating, {
     bad: 1,

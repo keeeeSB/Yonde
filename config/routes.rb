@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       resources :books, only: %i[show destroy], module: :libraries do
         resources :reading_logs, only: %i[show new edit create update destroy], module: :books do
           resources :comments, only: %i[create update destroy], module: :reading_logs
+          resource :like, only: %i[create destroy], module: :reading_logs
         end
       end
     end
