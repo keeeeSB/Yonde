@@ -16,4 +16,7 @@ class User < ApplicationRecord
     content_type: %w[image/png image/jpg image/jpeg],
     size_range: 1..(5.megabytes),
   }
+
+  scope :default_order, -> { order(id: :asc) }
+  scope :confirmed, -> { where.not(confirmed_at: nil) }
 end
