@@ -10,7 +10,7 @@ class Admins::UsersController < Admins::ApplicationController
 
   def destroy
     @user.destroy!
-    redirect_to admins_users_path, notice: 'ユーザーを削除しました。', status: :see_other
+    redirect_to admins_users_path, notice: 'ユーザー情報を削除しました。', status: :see_other
   end
 
   private
