@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   namespace :admins do
     root 'static_pages#dashboard'
+    resources :users, only: %i[index show destroy]
   end
 
   authenticated :user do
