@@ -8,4 +8,6 @@ class Family < ApplicationRecord
   accepts_nested_attributes_for :children
 
   validates :name, presence: true
+
+  scope :default_order, -> { order(id: :asc) }
 end

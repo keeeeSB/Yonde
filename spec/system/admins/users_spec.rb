@@ -60,7 +60,7 @@ RSpec.describe 'ユーザー管理機能', type: :system do
         accept_confirm do
           first(:button, '削除').click
         end
-        expect(page).to have_content 'ユーザーを削除しました。'
+        expect(page).to have_content 'ユーザー情報を削除しました。'
         expect(page).to have_current_path admins_users_path
       end.to change(User, :count).by(-1)
 

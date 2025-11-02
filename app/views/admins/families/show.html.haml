@@ -1,0 +1,26 @@
+%h2.text-center.mb-4 家族詳細
+
+%table.table.table-bordered.w-100
+  %tbody
+    %tr
+      %th.text-center.w-25 名前
+      %td= @family.name
+    %tr
+      %th.text-center.w-25 所属ユーザー
+      %td= @family.users.map(&:name).join('、')
+    %tr
+      %th.text-center.w-25 子供
+      %td= @family.children.map(&:name).join('、')
+
+    %tr
+      %th.text-center.w-25 読み聞かせ記録の数
+      %td= @family.reading_logs.count
+
+.text-center.mt-4
+  = link_to '一覧に戻る', admins_families_path, class: 'btn btn-outline-secondary me-2'
+  = button_to '削除する',
+              admins_family_path(@family),
+              method: :delete,
+              data: { turbo_confirm: '本当に削除しますか？' },
+              form: { class: 'd-inline' },
+              class: 'btn btn-outline-danger'

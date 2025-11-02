@@ -1,0 +1,22 @@
+%h2.text-center.mb-4 家族一覧
+
+- if @families.exists?
+  %table.table.table-hover.table-bordered.align-middle.text-center
+    %thead
+      %tr
+        %th.w-10 ID
+        %th 名前
+        %th 操作
+    %tbody
+      - @families.each do |family|
+        %tr
+          %td= family.id
+          %td= family.name
+          %td
+            = link_to '詳細', admins_family_path(family), class: 'btn btn-sm btn-outline-secondary me-2'
+            = button_to '削除',
+                        admins_family_path(family),
+                        method: :delete,
+                        data: { turbo_confirm: '本当に削除しますか？' },
+                        form: { class: 'd-inline' },
+                        class: 'btn btn-sm btn-outline-danger'
