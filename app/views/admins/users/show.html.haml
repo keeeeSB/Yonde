@@ -11,6 +11,9 @@
     %tr
       %th.text-center.w-25 本人確認
       %td= render 'admins/users/confirm_status_badge', user: @user
+    %tr
+      %th.text-center.w-25 所属家族
+      %td= @user.family.name
 
 .text-center.mt-4
   = link_to '一覧に戻る', admins_users_path, class: 'btn btn-outline-secondary me-2'
