@@ -14,7 +14,9 @@
 
     %tr
       %th.text-center.w-25 読み聞かせ記録の数
-      %td= @family.reading_logs.count
+      %td
+        = @family.reading_logs.count
+        = link_to '読み聞かせ記録一覧へ', admins_family_reading_logs_path(@family), class: 'btn btn-sm btn-outline-success ms-3'
 
 .text-center.mt-4
   = link_to '一覧に戻る', admins_families_path, class: 'btn btn-outline-secondary me-2'
