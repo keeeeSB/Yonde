@@ -1,0 +1,25 @@
+%h2.text-center.mb-4 読み聞かせ記録詳細
+
+%table.table.table-bordered.w-100
+  %tbody
+    %tr
+      %th.text-center.w-25 読み聞かせた本のタイトル
+      %td= @reading_log.book.title
+    %tr
+      %th.text-center.w-25 読み聞かせた日
+      %td= l(@reading_log.read_on, format: :long)
+    %tr
+      %th.text-center.w-25 読み聞かせた人
+      %td= @reading_log.user.name
+    %tr
+      %th.text-center.w-25 読み聞かせた子供
+      %td= @reading_log.children.map(&:name).join('、')
+
+.text-center.mt-4
+  = link_to '一覧に戻る', admins_family_reading_logs_path(@family), class: 'btn btn-outline-secondary me-2'
+  = button_to '削除する',
+              admins_family_path(@family, @reading_log),
+              method: :delete,
+              data: { turbo_confirm: '本当に削除しますか？' },
+              form: { class: 'd-inline' },
+              class: 'btn btn-outline-danger'

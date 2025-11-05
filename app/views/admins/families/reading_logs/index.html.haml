@@ -1,0 +1,26 @@
+%h2.text-center.mb-4 #{@family.name}家の読み聞かせ記録一覧
+
+- if @reading_logs.exists?
+  %table.table.table-hover.table-bordered.align-middle.text-center
+    %thead
+      %tr
+        %th.w-10 ID
+        %th 読み聞かせた本
+        %th 読み聞かせた日
+        %th 読み聞かせた人
+        %th 操作
+    %tbody
+      - @reading_logs.preload(:book, :user, :children).each do |log|
+        %tr
+          %td= log.id
+          %td= log.book.title
+          %td= l(log.read_on, format: :long)
+          %td= log.user.name
+          %td
+            = link_to '詳細', admins_family_reading_log_path(@family, log), class: 'btn btn-sm btn-outline-secondary me-2'
+            = button_to '削除',
+                        admins_family_reading_log_path(@family, log),
+                        method: :delete,
+                        data: { turbo_confirm: '本当に削除しますか？' },
+                        form: { class: 'd-inline' },
+                        class: 'btn btn-sm btn-outline-danger'

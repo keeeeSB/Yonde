@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   namespace :admins do
     root 'static_pages#dashboard'
     resources :users, only: %i[index show destroy]
-    resources :families, only: %i[index show destroy]
+    resources :families, only: %i[index show destroy] do
+      resources :reading_logs, only: %i[index show destroy], module: :families
+    end
   end
 
   authenticated :user do
